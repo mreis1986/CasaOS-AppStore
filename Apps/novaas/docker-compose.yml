@@ -33,7 +33,7 @@ services:
           description:
             en_us: ""
       ports:
-        - container: "6789"
+        - container: "1880"
           description:
             en_us: ""
 
@@ -74,4 +74,4 @@ x-casaos:
         | admin   | password |
   title:
     en_us: novaas
-  port_map: "6789"
+  port_map: "1880"
