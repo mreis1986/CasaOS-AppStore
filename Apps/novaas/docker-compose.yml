@@ -1,5 +1,4 @@
-version: '3.8'
-
+name: novaas
 services:
   novaas:
     container_name: novaas
@@ -17,20 +16,62 @@ services:
       - novaas_network
 
     x-casaos:
-      main: novaas
-      author: CasaOS Community
-      category: Developer
-      description:
-        en_us: "Novaas is an advanced application for developers."
-      developer: "Nova School of Science and Technology"
-      icon: "https://cdn.jsdelivr.net/gh/mreis1986/CasaOS-AppStore@main/Apps/novaas/icon.png"
-      tagline:
-        en_us: "Cloud-native development environment."
-      title:
-        en_us: "Novaas"
-      index: "/"
-      port_map: "1880"
+      envs:
+        - container: PUID
+          description:
+            en_us: ""
+        - container: PGID
+          description:
+            en_us: ""
+        - container: TZ
+          description:
+            en_us: ""
+        - container: NOVAAS_USER
+          description:
+            en_us: ""
+        - container: NOVAAS_PASS
+          description:
+            en_us: ""
+      ports:
+        - container: "6789"
+          description:
+            en_us: ""
 
-networks:
-  novaas_network:
-    driver: bridge
+      volumes:
+        - container: /config
+          description:
+            en_us: ""
+        - container: /downloads
+          description:
+            en_us: ""
+    container_name: novaas
+x-casaos:
+  architectures:
+    - amd64
+    - arm
+    - arm64
+  main: novaas
+  author: CasaOS Team
+  category: Downloader 
+  description:
+    en_us: Asset Administration Shell do things
+
+  developer: Uninova
+  icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
+  screenshot_link:
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
+
+  tagline:
+    en_us: Asset Administration Shell 
+  thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
+  tips:
+    before_install:
+      en_us: |
+        Default Account
+
+        | Username | Password |
+        | -------- | -------- |
+        | admin   | password |
+  title:
+    en_us: novaas
+  port_map: "6789"
