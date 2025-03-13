@@ -12,6 +12,10 @@ services:
       - BROKER_SERVICE_HOST=broker.local
       - BROKER_SERVICE_PORT=1883
       - REPO_LOCATION=/data
+    ports:
+      - target: 1880
+        published: "1880"
+        protocol: tcp
     volumes:
       - /DATA/AppData/novaas/config:/config
       - /DATA/Downloads:/downloads
