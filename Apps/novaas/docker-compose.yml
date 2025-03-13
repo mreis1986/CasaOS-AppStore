@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     network_mode: "host"
     environment:
-      - PORT_FORWARDING=8000  # Make sure the app runs on port 8000
+      - PORT_FORWARDING=1880  # Make sure the app runs on port 8000
       - HOST=192.168.3.95
       - BROKER_SERVICE_HOST=broker.local
       - BROKER_SERVICE_PORT=1883
@@ -19,6 +19,11 @@ services:
     volumes:
       - /DATA/AppData/novaas/config:/config
       - /DATA/Downloads:/downloads
+    x-casaos:
+      ports:
+        - container: "1880"
+          description:
+            en_us: ""
 
 x-casaos:
   architectures:
@@ -47,4 +52,4 @@ x-casaos:
         | admin   | password |
   title:
     en_us: novaas
-  port_map: "8000"
+  port_map: "1880"
