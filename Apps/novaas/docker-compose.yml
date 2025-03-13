@@ -3,15 +3,17 @@ version: "3.9"
 services:
   novaas:
     container_name: novaas
-    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:808402e4de750530e5970b4fc247dfb968dd0075"
+    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:v1.0.0"
     restart: unless-stopped
-    network_mode: "host"  # Allows access without specifying a port
+    network_mode: "host"
     environment:
-      - PORT_FORWARDING=80  # Make sure the app runs on port 80
+      - PORT_FORWARDING=1880
       - HOST=192.168.3.95
       - BROKER_SERVICE_HOST=broker.local
       - BROKER_SERVICE_PORT=1883
       - REPO_LOCATION=/data
+    ports:
+      - 1880:1880
     volumes:
       - /DATA/AppData/novaas/config:/config
       - /DATA/Downloads:/downloads
@@ -25,7 +27,7 @@ x-casaos:
   author: CasaOS Team
   category: Downloader 
   description:
-    en_us: Asset Administration Shell do things
+    en_us: Asset Administration Shell
   developer: Uninova
   icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
   screenshot_link:
@@ -43,4 +45,4 @@ x-casaos:
         | admin   | password |
   title:
     en_us: novaas
-  port_map: "80"
+  port_map: "1880"
