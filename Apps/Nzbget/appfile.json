@@ -2,7 +2,7 @@
 	"version": "2.0",
 	"title": "Nzbget",
 	"name": "Nzbget",
-	"icon": "https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Nzbget/icon.png",
+	"icon": "https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png",
 	"tagline": "Efficient Usenet downloader",
 	"overview": "NZBGet can run on almost any device - classic PC, NAS, media player, SAT-receiver, WLAN-router, etc. The download area provides precompiled binaries for Windows, macOS, Linux (compatible with many CPUs and platform variants), FreeBSD and Android. For other platforms the program can be compiled from sources.",
 	"thumbnail": "https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Nzbget/thumbnail.png",
