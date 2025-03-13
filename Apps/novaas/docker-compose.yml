@@ -1,15 +1,21 @@
+version: '3.8'
+
 services:
-    novaas:
-        build: 
-            context: .
-            args: 
-                - "AAS_VERSION=${AAS_VERSION}"
-        image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:latest"
-        environment:
-            - "PORT_FORWARDING=${PORT_FORWARDING}" 
-            - "HOST=${HOST}"
-            - "BROKER_SERVICE_HOST=${BROKER_SERVICE_HOST}"
-            - "BROKER_SERVICE_PORT=${BROKER_SERVICE_PORT}"
-            - "REPO_LOCATION=${REPO_LOCATION}"
-        ports:
-            - "${PORT_FORWARDING}:1880"
+  novaas:
+    container_name: novaas
+    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:v1.0.0"
+    restart: unless-stopped
+    environment:
+      - PORT_FORWARDING=${PORT_FORWARDING:-1880} 
+      - HOST=${HOST:-localhost}
+      - BROKER_SERVICE_HOST=${BROKER_SERVICE_HOST:-broker.local}
+      - BROKER_SERVICE_PORT=${BROKER_SERVICE_PORT:-1883}
+      - REPO_LOCATION=${REPO_LOCATION:-/data}
+    ports:
+      - "${PORT_FORWARDING:-1880}:1880"
+    networks:
+      - novaas_network
+
+networks:
+  novaas_network:
+    driver: bridge
