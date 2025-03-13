@@ -27,7 +27,8 @@
   {
     "name": "Developer",
     "font": "code-greater-than-or-equal",
-    "description": "Developer Apps"
+    "description": "Developer Apps",
+    "apps": ["novaas"]
   },
   {
     "name": "CRM",
