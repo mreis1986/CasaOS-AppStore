@@ -29,7 +29,8 @@
     "font": "code-greater-than-or-equal",
     "description": "Developer Apps",
     "apps": ["novaas"]
-  },
+  }
+  ,
   {
     "name": "CRM",
     "font": "account-box-outline",
