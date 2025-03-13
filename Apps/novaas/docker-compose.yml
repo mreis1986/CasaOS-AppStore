@@ -16,6 +16,21 @@ services:
     networks:
       - novaas_network
 
+    x-casaos:
+      main: novaas
+      author: CasaOS Community
+      category: Developer
+      description:
+        en_us: "Novaas is an advanced application for developers."
+      developer: "Nova School of Science and Technology"
+      icon: "https://cdn.jsdelivr.net/gh/mreis1986/CasaOS-AppStore@main/Apps/novaas/icon.png"
+      tagline:
+        en_us: "Cloud-native development environment."
+      title:
+        en_us: "Novaas"
+      index: "/"
+      port_map: "1880"
+
 networks:
   novaas_network:
     driver: bridge
