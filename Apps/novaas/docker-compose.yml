@@ -3,15 +3,17 @@ version: "3.9"
 services:
   novaas:
     container_name: novaas
-    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:v1.0.0"
+    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:808402e4de750530e5970b4fc247dfb968dd0075"
     restart: unless-stopped
     network_mode: "host"  # Allows access without specifying a port
     environment:
-      - PORT_FORWARDING=80  # Make sure the app runs on port 80
+      - PORT_FORWARDING=1880  # Make sure the app runs on port 80
       - HOST=192.168.3.95
       - BROKER_SERVICE_HOST=broker.local
       - BROKER_SERVICE_PORT=1883
       - REPO_LOCATION=/data
+    ports:
+      - "${PORT_FORWARDING}:1880"
     volumes:
       - /DATA/AppData/novaas/config:/config
       - /DATA/Downloads:/downloads
@@ -43,4 +45,4 @@ x-casaos:
         | admin   | password |
   title:
     en_us: novaas
-  port_map: "80"
+  port_map: "1880"
