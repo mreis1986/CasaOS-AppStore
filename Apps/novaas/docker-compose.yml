@@ -1,4 +1,5 @@
-name: novaas
+version: "3.9"
+
 services:
   novaas:
     container_name: novaas
@@ -6,50 +7,21 @@ services:
     restart: unless-stopped
     environment:
       - PORT_FORWARDING=1880 
-      - HOST=localhost
+      - HOST=192.168.3.95  # Ensure service binds to the correct IP
       - BROKER_SERVICE_HOST=broker.local
       - BROKER_SERVICE_PORT=1883
       - REPO_LOCATION=/data
     ports:
-      - "1880:1880"
+      - "1880:1880"  # Maps container port 1880 to host port 1880
     networks:
       - novaas_network
     volumes:
-      - type: bind
-        source: /DATA/AppData/novaas/config
-        target: /config
-      - type: bind
-        source: /DATA/Downloads
-        target: /downloads
+      - /DATA/AppData/novaas/config:/config
+      - /DATA/Downloads:/downloads
 
-    x-casaos:
-      envs:
-        - container: PUID
-          description:
-            en_us: ""
-        - container: PGID
-          description:
-            en_us: ""
-        - container: TZ
-          description:
-            en_us: ""
-        - container: NOVAAS_USER
-          description:
-            en_us: ""
-        - container: NOVAAS_PASS
-          description:
-            en_us: ""
-      ports:
-        - container: "1880"
-          description:
-            en_us: "Web UI"
-      volumes:
-        - container: /config
-          description:
-            en_us: "Configuration Data"
-        - container: /downloads
-          description:
-            en_us: "Downloads"
+networks:
+  novaas_network:
+    driver: bridge
 
 x-casaos:
   architectures:
@@ -79,7 +51,3 @@ x-casaos:
   title:
     en_us: novaas
   port_map: "1880"
-
-networks:
-  novaas_network:
-    driver: bridge
