@@ -1,55 +1,50 @@
-version: '3'
+version: "3.9"
 
 services:
   novaas:
-    args:
-      - AAS_VERSION=${AAS_VERSION}
-    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:a74dd25db9360f11b35c38dfd0b9390fa9658e77"
-    deploy:
-      resources:
-        reservations:
-          memory: 64M    
-    network_mode: "host"
-    environment:
-      - PORT_FORWARDING=1870
-      - HOST=192.168.3.95
-      - BROKER_SERVICE_HOST=192.168.3.95
-      - BROKER_SERVICE_PORT=1870
-      - REPO_LOCATION=/DATA/AppData/$AppID/data
-    ports:
-      - target: 1870
-        published: "1870"
-        protocol: tcp
+    container_name: novaas
+    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:808402e4de750530e5970b4fc247dfb968dd0075"
     restart: unless-stopped
+    network_mode: "host"  # Allows access without specifying a port
+    environment:
+      - PORT_FORWARDING=1880  # Make sure the app runs on port 80
+      - HOST=192.168.3.95
+      - BROKER_SERVICE_HOST=broker.local
+      - BROKER_SERVICE_PORT=1883
+      - REPO_LOCATION=/data
+    ports:
+      - target: 1880
+          published: "1880"
+          protocol: tcp
     volumes:
-      - type: bind
-        source: /DATA/AppData/$AppID/data
-        target: /data            
-    x-casaos:
-      ports:
-        - container: "1870"
-          description:
-            en_us: ""
+      - /DATA/AppData/novaas/config:/config
+      - /DATA/Downloads:/downloads
+
 x-casaos:
   architectures:
     - amd64
-    - arm64
-    - s390x
     - arm
+    - arm64
   main: novaas
   author: CasaOS Team
-  category: Developer
+  category: Downloader 
   description:
     en_us: Asset Administration Shell do things
-  developer: Node-RED
+  developer: Uninova
   icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
   screenshot_link:
     - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
   tagline:
-    en_us: Asset Administration Shell do things 2
+    en_us: Asset Administration Shell 
   thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
-  tips: {}
+  tips:
+    before_install:
+      en_us: |
+        Default Account
+
+        | Username | Password |
+        | -------- | -------- |
+        | admin   | password |
   title:
     en_us: novaas
-  index: /
-  port_map: "1870"
+  port_map: "1880"
