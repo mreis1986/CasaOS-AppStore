@@ -4,21 +4,21 @@ services:
   novaas:
     args:
       - AAS_VERSION=${AAS_VERSION}
-    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:808402e4de750530e5970b4fc247dfb968dd0075"
+    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:a74dd25db9360f11b35c38dfd0b9390fa9658e77"
     deploy:
       resources:
         reservations:
           memory: 64M    
     network_mode: "host"
     environment:
-      - PORT_FORWARDING=1880
+      - PORT_FORWARDING=1870
       - HOST=192.168.3.95
       - BROKER_SERVICE_HOST=192.168.3.95
-      - BROKER_SERVICE_PORT=1880
+      - BROKER_SERVICE_PORT=1870
       - REPO_LOCATION=/DATA/AppData/$AppID/data
     ports:
-      - target: 1880
-        published: "1880"
+      - target: 1870
+        published: "1870"
         protocol: tcp
     restart: unless-stopped
     volumes:
@@ -27,7 +27,7 @@ services:
         target: /data            
     x-casaos:
       ports:
-        - container: "1880"
+        - container: "1870"
           description:
             en_us: ""
 x-casaos:
@@ -52,4 +52,4 @@ x-casaos:
   title:
     en_us: novaas
   index: /
-  port_map: "1880"
+  port_map: "1870"
