@@ -4,7 +4,7 @@ services:
   novaas:
     args:
       - AAS_VERSION=${AAS_VERSION}
-    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas"
+    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:808402e4de750530e5970b4fc247dfb968dd0075"
     deploy:
       resources:
         reservations:
