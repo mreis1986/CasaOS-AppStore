@@ -2,35 +2,25 @@ version: '3'
 
 services:
   novaas:
-    args:
-      - AAS_VERSION=${AAS_VERSION}
     image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:2ad875f652514e8b9c1afbb793252f06a842b090"
     deploy:
       resources:
         reservations:
           memory: 64M    
-    network_mode: "host"
-    environment:
-      - PORT_FORWARDING=1870
-      - HOST=192.168.3.95
-      - BROKER_SERVICE_HOST=192.168.3.95
-      - BROKER_SERVICE_PORT=1880
-      - REPO_LOCATION=/DATA/AppData/$AppID/data
-    ports:
-      - target: 1870
-        published: "1870"
-        protocol: tcp
     restart: unless-stopped
+    environment:
+      PORT_FORWARDING: "1880"
+      HOST: "192.168.3.95"
+      BROKER_SERVICE_HOST: "192.168.3.95"
+      BROKER_SERVICE_PORT: "1880"
+      REPO_LOCATION: "/DATA/AppData/$AppID/data"
     volumes:
       - type: bind
-        source: /DATA/AppData/$AppID/data
-        target: /data            
-    x-casaos:
-      ports:
-        - container: "1870"
-          description:
-            en_us: ""
+        source: /DATA/AppData/novaas/config
+        target: /config
     container_name: novaas
+    network_mode: "host"  # Ensure you need this, or remove it to allow port mapping
+
 x-casaos:
   architectures:
     - amd64
@@ -41,16 +31,15 @@ x-casaos:
   author: CasaOS Team
   category: Developer
   description:
-    en_us: Asset Administration Shell do things
+    en_us: Asset Administration Shell to manage things
   developer: Node-RED
   icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
   screenshot_link:
-    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
+    - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Anaconda3/screenshot-1.png
   tagline:
-    en_us: Asset Administration Shell do things 2
+    en_us: Asset Administration Shell for industrial automation
   thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
-  tips: {}
   title:
     en_us: novaas
   index: /
-  port_map: "1870"
+  port_map: "1880"
