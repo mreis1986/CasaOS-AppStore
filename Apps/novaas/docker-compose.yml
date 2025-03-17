@@ -3,7 +3,7 @@ version: "3.9"
 services:
   novaas:
     container_name: novaas
-    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:808402e4de750530e5970b4fc247dfb968dd0075"
+    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:2ad875f652514e8b9c1afbb793252f06a842b090"
     restart: unless-stopped
     network_mode: "host"  # Allows access without specifying a port
     environment:
