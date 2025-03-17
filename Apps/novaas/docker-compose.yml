@@ -3,7 +3,7 @@ services:
   novaas:
     container_name: novaas
     image: registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:2ad875f652514e8b9c1afbb793252f06a842b090
-    network_mode: hist
+    network_mode: host
     restart: unless-stopped
     environment:
       PORT_FORWARDING: "1870"
