@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   novaas:
-    image: registry.gitlab.com/novaas/catalog/nova-school-of-science-an:2ad875f652514e8b9c1afbb
+    image: registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:2ad875f652514e8b9c1afbb793252f06a842b090
     container_name: novaas
     restart: unless-stopped
     network_mode: "host"
