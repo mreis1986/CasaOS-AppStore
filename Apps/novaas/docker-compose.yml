@@ -38,15 +38,13 @@ x-casaos:
   hostname: ""
   index: /
   description:
-    en_us: Your machine learning Env work with Jupyter Lab
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
 
   tagline:
-    en_us: Your machine learning Env work with Jupyter Lab
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
 
   tips:
-    en_us: Your machine learning Env work with Jupyter Lab
+    en_us: User "admin" as username and "password" as password
 
-    before_install:
-      en_us: After installation, please check the token in the container log (Settings - TopRight - Terminal and Logs - Logs).
   title:
     en_us: novaas
