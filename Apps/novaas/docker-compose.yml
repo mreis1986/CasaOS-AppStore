@@ -48,3 +48,4 @@ x-casaos:
 
   title:
     en_us: novaas
+  port_map: "1880"
