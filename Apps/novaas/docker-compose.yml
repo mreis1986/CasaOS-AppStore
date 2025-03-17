@@ -1,51 +1,26 @@
-name: novaas
+version: '3.8'
+
 services:
   novaas:
+    image: registry.gitlab.com/novaas/catalog/nova-school-of-science-an:2ad875f652514e8b9c1afbb
     container_name: novaas
-    image: "registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:2ad875f652514e8b9c1afbb793252f06a842b090"
-    network_mode: host
     restart: unless-stopped
+    network_mode: "host"
     environment:
-      PORT_FORWARDING: "1870"
-      HOST: "192.168.3.95"
-      BROKER_SERVICE_HOST: "192.168.3.95"
-      BROKER_SERVICE_PORT: "1870"
-    ports:
-      - target: 1870
-        published: "1870"
-        protocol: tcp
+      - PORT_FORWARD=1880
+      - HOST=192.168.3.95
+      - BROKER_SERVICE_HOST=192.168.3.95
+      - BROKER_SERVICE_PORT=1880
+      - REPO_LOCATION=/DATA/AppData/$AppID/data
     volumes:
-      - type: bind
-        source: /DATA/AppData/$AppID/notebooks
-        target: /opt/notebooks
-    command:
-      - /bin/bash
-      - -c
-      - conda install -c conda-forge jupyterlab -y --quiet && jupyter lab
-        --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser
-        --allow-root
-    labels:
-      icon: https://cdn.jsdelivr.net/gh/LisonEvf/CasaOS-AppStore@main/Apps/Anaconda3/icon.png
-    x-casaos:
-      envs:
-        - container: PATH
-          description:
-            en_us: ""
-        - container: LANG
-          description:
-            en_us: ""
-        - container: LC_ALL
-          description:
-            en_us: ""
-      ports:
-        - container: "8888"
-          description:
-            en_us: JupyterLab
-      volumes:
-        - container: /opt/notebooks
-          description:
-            en_us: Jupyter notebook directory
-            zh_cn: Jupyter 笔记目录
+      - /DATA/AppData/novaas/config:/config
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1" # Low CPU Shares
+        reservations:
+          cpus: "0.05"
+
 x-casaos:
   main: novaas
   architectures:
@@ -53,7 +28,7 @@ x-casaos:
   author: LisonEvf
   category: AI
   developer: LisonEvf
-  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Anaconda3/icon.png
+  icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
   thumbnail: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Anaconda3/thumbnail.png
   screenshot_link:
     - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Anaconda3/screenshot-1.png
@@ -61,19 +36,17 @@ x-casaos:
     - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Anaconda3/screenshot-3.png
   scheme: http
   hostname: ""
-  port_map: "1870"
   index: /
   description:
     en_us: Your machine learning Env work with Jupyter Lab
-    zh_cn: 私有炼丹炉
+
   tagline:
     en_us: Your machine learning Env work with Jupyter Lab
-    zh_cn: 私有炼丹炉
+
   tips:
     en_us: Your machine learning Env work with Jupyter Lab
-    zh_cn: 私有炼丹炉
+
     before_install:
       en_us: After installation, please check the token in the container log (Settings - TopRight - Terminal and Logs - Logs).
-      zh_cn: 安装完成后，请在容器日志（应用-设置-右上角-终端与日志-日志）中查看token。
   title:
     en_us: novaas
