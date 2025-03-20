@@ -7,8 +7,8 @@ services:
     restart: always
     network_mode: "bridge"
     ports:
-      - target: 1874
-        published: "1880"
+      - target: 1880
+        published: "1883"
         protocol: tcp
     environment:
       - PORT_FORWARD=1883
