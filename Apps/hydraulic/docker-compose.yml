@@ -4,7 +4,7 @@ services:
   hydraulic:
     image: registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:1d6e69fad56acca03bfc5112c00b72b75730c060
     container_name: hydraulic
-    restart: unless-stopped
+    restart: always
     network_mode: "bridge"
     environment:
       - PORT_FORWARD=1883
