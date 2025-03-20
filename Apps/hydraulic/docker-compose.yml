@@ -25,9 +25,9 @@ x-casaos:
   main: hydraulic
   architectures:
     - amd64
-  author: LisonEvf
-  category: AI
-  developer: LisonEvf
+  author: Uninova
+  category: AAS
+  developer: Uninova
   icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
   thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/Apps/balluff-bcm-sensor-aas/thumbnail.png
   screenshot_link:
