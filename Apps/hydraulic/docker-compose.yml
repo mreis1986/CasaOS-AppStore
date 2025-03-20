@@ -6,6 +6,10 @@ services:
     container_name: hydraulic
     restart: always
     network_mode: "bridge"
+    ports:
+      - target: 1874
+        published: "1880"
+        protocol: tcp
     environment:
       - PORT_FORWARD=1883
       - HOST=192.168.3.95
