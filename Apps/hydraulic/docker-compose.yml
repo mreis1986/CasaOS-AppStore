@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   hydraulic:
-    image: registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:1d6e69fad56acca03bfc5112c00b72b75730c060
+    image: registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas-hydraulic-unit-simulation:1d6e69fad56acca03bfc5112c00b72b75730c060
     container_name: hydraulic
     restart: always
     network_mode: "bridge"
