@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  hydraulic:
+    image: registry.gitlab.com/novaas/catalog/nova-school-of-science-and-technology/novaas:1d6e69fad56acca03bfc5112c00b72b75730c060
+    container_name: hydraulic
+    restart: unless-stopped
+    network_mode: "bridge"
+    environment:
+      - PORT_FORWARD=1883
+      - HOST=192.168.3.95
+      - BROKER_SERVICE_HOST=192.168.3.95
+      - BROKER_SERVICE_PORT=1883
+      - REPO_LOCATION=/DATA/AppData/$AppID/data
+    volumes:
+      - /DATA/AppData/novaas/config:/config
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1" # Low CPU Shares
+        reservations:
+          cpus: "0.05"
+
+x-casaos:
+  main: hydraulic
+  architectures:
+    - amd64
+  author: LisonEvf
+  category: AI
+  developer: LisonEvf
+  icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/695ce2a6333dcd910cc45e889fcdb13fac1399ee/Apps/novaas/icon.png
+  thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/Apps/balluff-bcm-sensor-aas/thumbnail.png
+  screenshot_link:
+    - https://raw.githubusercontent.com/-mreis1986/CasaOS-AppStore/Apps/balluff-bcm-sensor-aas/screenshot-1.png 
+  scheme: http
+  hostname: ""
+  index: /
+  description:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tagline:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tips:
+    en_us: User "admin" as username and "password" as password
+
+  title:
+    en_us: hydraulic
+  port_map: "1883"
