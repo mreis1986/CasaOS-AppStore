@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  soldering-system-aas:
+    image: registry.gitlab.com/novaiiot/modul4r/ssf/soldering-system-aas:255a7cba2ed21bde6000927667d0306d6d630e2b
+    container_name: soldering-system-aas
+    restart: unless-stopped
+    network_mode: "bridge"
+    ports:
+      - target: 1880
+        published: "1812"
+        protocol: tcp
+    environment:
+      - PORT_FORWARDING=1873
+      - HOST=localhost
+      - BROKER_SERVICE_HOST=localhost
+      - BROKER_SERVICE_PORT=1883
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+        reservations:
+          cpus: "0.05"
+
+x-casaos:
+  main: soldering-system-aas
+  architectures:
+    - amd64
+  author: Uninova
+  category: AAS
+  developer: Uninova
+  icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/soldering-system-aass/icon.png
+  thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/soldering-system-aass/icon.png
+  screenshot_link:
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/soldering-system-aass/screenshot-1.png
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/soldering-system-aass/screenshot-2.png
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/soldering-system-aass/screenshot-3.png
+  scheme: http
+  hostname: ""
+  index: /
+  description:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tagline:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tips:
+    en_us: User "admin" as username and "password" as password
+
+  title:
+    en_us: novaas
+  port_map: "1812"

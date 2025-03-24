@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+cps-izer-simulator:
+    image: registry.gitlab.com/novaiiot/modul4r/ssf/cps-izer-simulator:1c3b9b822d9265a9482270c3db7e5e2a14615adb
+    container_name: cps-izer-simulator
+    restart: unless-stopped
+    network_mode: "bridge"
+    ports:
+      - target: 1880
+        published: "1816"
+        protocol: tcp
+    environment:
+      - PORT_FORWARDING=1899
+      - HOST=localhost
+      - BROKER_SERVICE_HOST=localhost
+      - BROKER_SERVICE_PORT=1883
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+        reservations:
+          cpus: "0.05"
+
+x-casaos:
+  main: cps-izer-simulator
+  architectures:
+    - amd64
+  author: Uninova
+  category: AAS
+  developer: Uninova
+  icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/cps-izer-simulator/icon.png
+  thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/cps-izer-simulator/icon.png
+  screenshot_link:
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/cps-izer-simulator/screenshot-1.png
+  scheme: http
+  hostname: ""
+  index: /
+  description:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tagline:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tips:
+    en_us: User "admin" as username and "password" as password
+
+  title:
+    en_us: novaas
+  port_map: "1816"

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  staubli-robot-aas:
+    image: registry.gitlab.com/novaiiot/modul4r/ssf/staubli-robot-aas:58bd60e35fccaae5ae10e40907182791209ee883
+    container_name: staubli-robot-aas
+    restart: unless-stopped
+    network_mode: "bridge"
+    ports:
+      - target: 1880
+        published: "1811"
+        protocol: tcp
+    environment:
+      - "PORT_FORWARDING=${PORT_FORWARDING}" 
+      - "HOST=${HOST}"
+      - "BROKER_SERVICE_HOST=${BROKER_SERVICE_HOST}"
+      - "BROKER_SERVICE_PORT=${BROKER_SERVICE_PORT}"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+        reservations:
+          cpus: "0.05"
+
+x-casaos:
+  main: staubli-robot-aas
+  architectures:
+    - amd64
+  author: Uninova
+  category: AAS
+  developer: Uninova
+  icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/staubli-robot-aas/icon.png
+  thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/staubli-robot-aas/icon.png
+  screenshot_link:
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/staubli-robot-aas/screenshot-1.png
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/staubli-robot-aas/screenshot-2.png
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/staubli-robot-aas/screenshot-3.png
+  scheme: http
+  hostname: ""
+  index: /
+  description:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tagline:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tips:
+    en_us: User "admin" as username and "password" as password
+
+  title:
+    en_us: novaas
+  port_map: "1811"

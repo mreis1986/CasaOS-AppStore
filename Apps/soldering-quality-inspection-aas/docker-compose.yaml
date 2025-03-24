@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  soldering-quality-inspection-aas:
+    image: registry.gitlab.com/novaiiot/modul4r/ssf/soldering-quality-inspection-aas:2a41e0566bcec94af584f2add0c8b8011296da8c
+    container_name: soldering-quality-inspection-aas
+    restart: unless-stopped
+    network_mode: "bridge"
+    ports:
+      - target: 1880
+        published: "1813"
+        protocol: tcp
+    environment:
+      - PORT_FORWARDING=1876
+      - HOST=localhost
+      - BROKER_SERVICE_HOST=localhost
+      - BROKER_SERVICE_PORT=1883
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+        reservations:
+          cpus: "0.05"
+
+x-casaos:
+  main: soldering-quality-inspection-aas
+  architectures:
+    - amd64
+  author: Uninova
+  category: AAS
+  developer: Uninova
+  icon: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/Apps/soldering-quality-inspection-aas/icon.png
+  thumbnail: https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/Apps/soldering-quality-inspection-aas/icon.png
+  screenshot_link:
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/Apps/soldering-quality-inspection-aas/Screenshot-1.png
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/Apps/soldering-quality-inspection-aas/Screenshot-2.png
+    - https://raw.githubusercontent.com/mreis1986/CasaOS-AppStore/Apps/soldering-quality-inspection-aas/Screenshot-3.png
+  scheme: http
+  hostname: ""
+  index: /
+  description:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tagline:
+    en_us: Implementation of the Asset Administration Shell by NOVA School of Science and Technology
+
+  tips:
+    en_us: User "admin" as username and "password" as password
+
+  title:
+    en_us: novaas
+  port_map: "1813"
